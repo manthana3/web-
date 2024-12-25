@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e3f2fd; /* สีพื้นหลังฟ้าอ่อน */
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e88e5, #42a5f5); /* ไล่สีโทนน้ำเงิน */
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgb(0, 0, 0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* ระบุระยะห่างระหว่างปุ่ม */
+            background-color: #ffffff;
+            padding: 15px 0;
+            border-bottom: 2px solid #1e88e5;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #1e88e5;
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            background-color: #e3f2fd;
+        }
+
+        .navbar a:hover {
+            background-color: #1e88e5;
+            color: white;
+        }
+
+        .navbar a:last-child {
+            background-color: #e53935; /* สีแดง */
+            color: white;
+        }
+
+        .navbar a:last-child:hover {
+            background-color: #d32f2f;
+        }
+
+        .content {
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .dashboard {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-card {
+            width: 24%;
+            padding: 20px;
+            border: 2px solid #1e88e5; /* เพิ่มเส้นขอบ */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* ชัดเจนขึ้น */
+            text-align: center;
+            cursor: pointer;
+            background-color: #ffffff; /* พื้นหลังการ์ดสีขาว */
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .dashboard-card.card-1 {
+            background-color: #a3e9a4; /* สีฟ้าอ่อน */
+        }
+
+        .dashboard-card.card-2 {
+            background-color: #ffeb3b; /* สีเขียวอ่อน */
+        }
+
+        .dashboard-card.card-3 {
+            background-color: #F5E3CB; /* สีเหลืองอ่อน */
+        }
+
+        .dashboard-card:hover {
+            transform: scale(1.05);
+            background-color: #e3f2fd;
+        }
+
+        .dashboard-card h2 {
+            margin: 10px 0;
+        }
+
+        .dashboard-card .add-more {
+            font-size: 12px;
+            color: #007bff;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .charts {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .chart {
+            width: 48%;
+        }
+
+        .chart-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #000000;
+        }
+
+        .chart canvas {
+            width: 100%;
+            height: 200px;
+        }
+    </style>
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const formattedDate = now.toLocaleDateString('th-TH', options);
+            document.getElementById('datetime').textContent = formattedDate;
+        }
+
+        function redirectToPage(pageUrl) {
+            window.location.href = pageUrl;
+        }
+
+        window.onload = function() {
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+        };
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>ระบบบริหารการจัดการวัสดุคอมพิวเตอร์ของ กกท</h1>
+        <div id="datetime" class="datetime"></div>
+    </div>
+
+    <div class="navbar">
+        <a href="สถานะการขอเบิก.html">สถานะการขอเบิก</a>
+        <a href="หน้าสถานะการยืมคืน.html">สถานะการยืม - คืน</a>
+        <a href="ประวัติการเบิกยืม.html">ประวัติการเบิกยืม</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="LoginPage.html">ออกจากระบบ</a>
+    </div>
+
+    <div class="content">
+        <div class="dashboard">
+            <div class="dashboard-card card-1" onclick="redirectToPage('จำนวนวัสดุ.html')">
+                <h2>-</h2>
+                <p>จำนวนวัสดุ</p>
+                <span class="add-more">เพิ่มเติม</span>
+            </div>
+            <div class="dashboard-card card-2" onclick="redirectToPage('ยืม-คืน.html')">
+                <h2>-</h2>
+                <p>ยืมคืนวัสดุ</p>
+                <span class="add-more">เพิ่มเติม</span>
+            </div>
+            <div class="dashboard-card card-3" onclick="redirectToPage('รอรับของ.html')">
+                <h2>-</h2>
+                <p>เบิกจ่ายวัสดุ</p>
+                <span class="add-more">เพิ่มเติม</span>
+            </div>
+        </div>
+
+        <div class="charts">
+            <div class="chart">
+                <h3 class="chart-title">รายงานจำนวนการยืม - คืน วัสดุ</h3>
+                <canvas id="chart1"></canvas>
+            </div>
+            <div class="chart">
+                <h3 class="chart-title">รายงานจำนวนการเบิกจ่ายวัสดุ</h3>
+                <canvas id="chart2"></canvas>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

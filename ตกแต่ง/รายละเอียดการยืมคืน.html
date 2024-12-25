@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบบริหารการจัดการวัสดุคอมพิวเตอร์ของ กกท</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3f2fd; /* สีพื้นหลังฟ้าอ่อน */
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: linear-gradient(135deg, #1e88e5, #42a5f5); /* ไล่สีโทนน้ำเงิน */
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 10px 20px;
+            color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        header #currentDateTime {
+            font-size: 14px;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        .details, .control {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            margin: 10px;
+        }
+        .details h3 {
+            margin-bottom: 15px;
+        }
+        .control select, .control textarea, .control button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .control button {
+            background-color: #4CAF50; /* สีเขียว */
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .control button:hover {
+            background-color: #45a049;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* ระบุระยะห่างระหว่างปุ่ม */
+            background-color: #ffffff;
+            padding: 15px 0;
+            border-bottom: 2px solid #1e88e5;
+        }
+        .navbar a {
+            text-decoration: none;
+            color: #1e88e5;
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            background-color: #e3f2fd;
+        }
+        .navbar a:hover {
+            background-color: #1e88e5;
+            color: white;
+        }
+        .navbar a:last-child {
+            background-color: #e53935; /* สีแดง */
+            color: white;
+        }
+        .navbar a:last-child:hover {
+            background-color: #d32f2f;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #ffffff;
+            border-top: 1px solid #ddd;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .footer .back-button {
+            display: inline-block;
+            background-color: #1e88e5;
+            color: white;
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 25px;
+            text-decoration: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .footer .back-button:hover {
+            background-color: #90caf9;
+            transform: scale(1.1);
+        }
+    </style>
+    <script>
+        // ฟังก์ชันสำหรับอัปเดตเวลาและวันที่
+        function updateDateTime() {
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            document.getElementById('currentDateTime').innerText = now.toLocaleDateString('th-TH', options);
+        }
+
+        // เรียกฟังก์ชันทุกๆ 1 วินาที
+        setInterval(updateDateTime, 1000);
+        updateDateTime(); // เรียกใช้งานทันทีเมื่อโหลดหน้าเว็บ
+    </script>
+</head>
+<body>
+    <header>
+        <h1>ระบบบริหารการจัดการวัสดุคอมพิวเตอร์ของ กกท</h1>
+        <div>
+            <span id="currentDateTime">กำลังโหลด...</span>
+        </div>
+    </header>
+
+    <div class="navbar">
+        <a href="สถานะการขอเบิก.html">สถานะการขอเบิก</a>
+        <a href="หน้าสถานะการยืมคืน.html">สถานะการยืม - คืน</a>
+        <a href="ประวัติการเบิกยืม.html">ประวัติการเบิกยืม</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="LoginPage.html">ออกจากระบบ</a>
+    </div>
+
+    <div class="container">
+        <div class="details">
+            <h3>รายละเอียดการ ยืม-คืน</h3>
+            <p><strong>ชื่อผู้เบิก:</strong> </p>
+            <p><strong>เบอร์ภายใน:</strong> </p>
+            <p><strong>E-mail:</strong> </p>
+            <p><strong>ชื่อวัสดุ:</strong> </p>
+            <p><strong>ประเภท:</strong> </p>
+            <p><strong>ยี่ห้อ:</strong> </p>
+            <p><strong>ชื่อฝ่ายที่สังกัด:</strong> </p>
+            <p><strong>หมายเลขครุภัณฑ์:</strong> </p>
+            <p><strong>อุปกรณ์:</strong></p>
+            <p><strong>จำนวน:</strong> </p>
+            <p><strong>วันที่ยืม:</strong> </p>
+            <p><strong>วันที่คืน:</strong> </p>
+        </div>
+
+        <div class="control">
+            <h3>เช็ควัสดุ</h3>
+            <div>
+                <label for="category">ประเภท:</label>
+                <select id="category">
+                    <option>ประเภททั้งหมด</option>
+                    <option>วัสดุคอมพิวเตอร์</option>
+                    <option>อุปกรณ์คอมพิวเตอร์</option>
+                    <option>...</option>
+                </select>
+            </div>
+            <div>
+                <label for="equipment">อุปกรณ์:</label>
+                <select id="equipment">
+                    <option>อุปกรณ์ทั้งหมด</option>
+                    <option>...</option>
+                </select>
+            </div>
+            <div>
+                <label for="equipment">ยี่ห้อ:</label>
+                <select id="equipment">
+                    <option>ยี่ห้อทั้งหมด</option>
+                    <option>ASUS</option>
+                    <option>LENOVO</option>
+                    <option>...</option>
+                </select>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+                    ค้นหา
+                </button>
+            </div>
+            <div>
+
+                <label for="status">การอนุมัติ:</label>
+                <select id="status">
+                    <option>อนุมัติ</option>
+                    <option>ไม่อนุมัติ</option>
+                </select>
+            </div>
+                <div>
+                <label for="reason">เหตุผล:</label>
+                <textarea id="reason" rows="5"></textarea>
+            </div>
+            <button>ตกลง</button>
+        </div>
+    </div>
+</body>
+</html>
